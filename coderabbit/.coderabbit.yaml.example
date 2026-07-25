@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# 저장소 루트에 .coderabbit.yaml이라는 이름으로 복사한 뒤 사용하세요.
+
+language: "ko-KR"
+early_access: false
+
+reviews:
+  # chill: 중요한 문제 위주 / assertive: 더 적극적인 리뷰
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+
+  auto_review:
+    enabled: true
+    drafts: false
+    auto_incremental_review: true
+    auto_pause_after_reviewed_commits: 5
+
+    # 기본 브랜치는 자동 포함됩니다. 추가 대상 브랜치만 적으세요.
+    base_branches:
+      - "develop"
+      - "release/.*"
+
+    ignore_usernames:
+      - "dependabot[bot]"
+      - "renovate[bot]"
+
+    labels:
+      - "!do-not-review"
+
+  path_filters:
+    - "!**/dist/**"
+    - "!**/build/**"
+    - "!**/node_modules/**"
+    - "!**/generated/**"
+    - "!**/*.lock"
+
+  path_instructions:
+    - path: "src/api/**"
+      instructions: |
+        인증과 권한 검사를 우선 확인하세요.
+        외부 입력값의 검증 누락과 민감 정보 노출을 지적하세요.
+
+    - path: "tests/**"
+      instructions: |
+        정상 경로뿐 아니라 오류와 경계 조건도 검증하는지 확인하세요.
+
+    - path: "docs/**/*.md"
+      instructions: |
+        문서의 링크, 명령, 버전 정보가 실제 구현과 일치하는지 확인하세요.
+
+chat:
+  auto_reply: true
