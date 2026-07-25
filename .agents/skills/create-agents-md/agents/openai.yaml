@@ -1,4 +1,4 @@
 interface:
   display_name: "Create AGENTS.md"
-  short_description: "Build repository guidance from local study notes"
+  short_description: "Build repository guidance from local source documents"
   default_prompt: "Use $create-agents-md to create or update this repository's AGENTS.md."
