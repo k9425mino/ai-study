@@ -1,4 +1,4 @@
-# Repository Agent Guide
+# AGENTS.md for this Repository
 
 ## Repository Purpose
 
